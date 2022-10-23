@@ -110,7 +110,8 @@ void get_logged_handler(char* command, int fifo_d, int client_pid) {
             }
 
             char time_buf[100];
-            struct tm ts = *localtime((const time_t*)&info->ut_tv.tv_sec);
+            const long sec = info->ut_tv.tv_sec;
+            struct tm ts = *localtime(&sec);
             strftime(time_buf, sizeof(time_buf), "%a %Y-%m-%d %H:%M:%S", &ts);
 
             char* parts[] = {
