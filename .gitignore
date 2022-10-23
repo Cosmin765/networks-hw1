@@ -1,3 +1,5 @@
 .vscode/
 fifo1
 fifo2
+client
+server
