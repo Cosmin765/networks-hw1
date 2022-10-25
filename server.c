@@ -183,6 +183,9 @@ void get_proc_handler(char* command, int fifo_d, int client_pid) {
         sprintf(filepath, "/proc/%d/status", proc_pid);
 
         int fd = open(filepath, O_RDONLY);
+        if(fd == -1) {
+            send_with_header(sockets[1], color_text("Proc doesn't exist :(", RED));
+        }
         EXPECT(fd != -1, "open proc");
 
         const char* props[] = {
